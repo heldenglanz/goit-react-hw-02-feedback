@@ -17,10 +17,14 @@ class Feedback extends Component {
     }
     onNeutralUp = () => {
         this.setState((prevState) => {
+            // console.dir(prevState)
             return {
+
                 neutral: prevState.neutral + 1,
+
                 // total: prevState.total + 1
             }
+
         })
     }
     onBadUp = () => {
@@ -31,11 +35,11 @@ class Feedback extends Component {
             }
         })
     }
-    countTotalFeedback = () => {
-        this.setState(() => {
-
+    countTotalFeedback() {
+        this.setState((prevState) => {
+            console.dir(prevState)
             return {
-                total: this.state.good + this.state.neutral + this.state.bad
+                total: Number(prevState.good + prevState.neutral + prevState.bad)
             }
         })
     }
