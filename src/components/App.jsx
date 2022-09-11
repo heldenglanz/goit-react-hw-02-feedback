@@ -1,33 +1,52 @@
-
-import Feedback from "./Feedback";
+import { Components } from 'react';
+import Section from './Section'
 import Statistics from "./Statistics";
+import FeedbackOptions from "./FeedbackOptions"
 
-export const App = () => {
-  return (
-    <>
+
+export default class App extends Components {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  }
+
+  handleMakeFeedback = (option) => {
+    this.setState((prevState) => {
+      return {
+        [option]: prevState[option] + 1,
+      }
+    })
+  }
+
+  countTotalFeedback() {
+    const { good, neutral, bad } = this.state
+    return good + neutral + bad
+  }
+  countPositiveFeedbackPercentage() {
+    const { good } = this.state
+    return good ? Math.round((good / this.countTotalFeedback()) * 100) : 0;
+  }
+
+  render() {
+    const options = Object.keys(this.state)
+    const { good, neutral, bad } = this.state
+    const total = this.countTotalFeedback()
+    const positivePercentage = this.countPositiveFeedbackPercentage()
+    return (
+
       <div>
-        <>
-          <Feedback />
 
+        <Section title="Please leave feedback" >
+          <FeedbackOptions options={options} onMakeFeedback={this.handleMakeFeedback} />
+        </Section>
 
-          <Statistics />
-
-        </>
-
+        <Section title="Statistics">
+          <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={this.positivePercentage} />
+        </Section>
 
       </div>
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101'
-        }}
-      >
-        React homework template
-      </div>
-    </>
-  );
+
+    );
+  }
 };

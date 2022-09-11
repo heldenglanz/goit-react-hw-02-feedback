@@ -1,31 +1,17 @@
-import React, { Component } from "react"
+// import s from "./Statistics.module.css";
 
-class Statistics extends Component {
+function Statistics({ good, neutral, bad, total, positivePercentage }) {
 
-    state = {
-        good: 0,
-        neutral: 0,
-        bad: 0,
-    }
+    return (
+        <>
+            <p>Good: {good}</p>
+            <p>Neutral: {neutral}</p>
+            <p>Bad: {bad}</p>
+            <p>Total: {total}</p>
+            <p>Positive feedback: {positivePercentage}</p>
+        </>
+    )
 
-
-
-
-
-
-
-    render() {
-
-
-        return (
-            <>
-                {/* <h2>Statistics</h2 >
-                <p>Good:{this.state.good}</p>
-                <p>Neutral:{this.state.neutral}</p>
-                <p>Bad:{this.state.bad}</p> */}
-            </>
-        )
-    }
 }
 
 export default Statistics
