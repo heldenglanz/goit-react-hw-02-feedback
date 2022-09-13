@@ -4,7 +4,7 @@ import Statistics from "./Statistics";
 import FeedbackOptions from "./FeedbackOptions"
 
 
-export default class App extends Components {
+export class App extends Components {
   state = {
     good: 0,
     neutral: 0,
@@ -42,7 +42,7 @@ export default class App extends Components {
         </Section>
 
         <Section title="Statistics">
-          <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={this.positivePercentage} />
+          <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage} />
         </Section>
 
       </div>
